@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#Says hi after the 9th print
+
+count=1
+while [ $count -le 10 ];
+	do
+		if [ $count -eq 10 ]
+			then
+				echo "Hi"
+		fi
+		echo "Best School"
+		count=$((count  + 1))
+	done
