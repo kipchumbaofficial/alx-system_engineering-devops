@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#Displays Best School 10x using until
+count=0
+until [ "$count" -eq 10 ] ; do
+	echo "Best School"
+	count=$((count + 1))
+done
