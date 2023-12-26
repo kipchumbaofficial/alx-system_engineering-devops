@@ -3,7 +3,7 @@
 
 LIM="10"
 
-for i in $(seq 1 $LIM)
+for _ in $(seq 1 $LIM)
 do
     echo "Best School"
 done

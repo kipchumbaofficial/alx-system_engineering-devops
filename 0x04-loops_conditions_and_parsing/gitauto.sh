@@ -6,8 +6,8 @@ git add .
 
 # Ask for the commit message
 
-echo "Enter the commit message: \n"
-read commitMessage
+echo "Enter the commit message:"
+read -r commitMessage
 
 # Commit changes
 
