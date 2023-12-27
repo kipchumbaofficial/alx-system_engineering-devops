@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Displays time for 12 hrs 59 mins
 #+ Hours from 0 to 12
 #+ Minutes from 1 to 59
