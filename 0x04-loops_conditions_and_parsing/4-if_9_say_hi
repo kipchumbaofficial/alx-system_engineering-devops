@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Says Hi on nineth
+
+
+i="0"
+
+while ((i < 10))
+do
+    echo "Best School"
+    ((i++))
+    if ((i == 9))
+    then
+        echo "Hi"
+    fi
+done
