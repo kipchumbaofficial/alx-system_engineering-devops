@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
 # Lists all processes
 
-top
+# Display header
+printf "%-10s %-5s %-5s %-10s %-10s %-5s %-10s %-5s %-10s %-10s %-15s\n" \
+       "USER" "PID" "%CPU" "%MEM" "VSZ" "RSS" "TTY" "STAT" "START" "TIME" "COMMAND"
+
+# Use ps command to list all processes, include all users and show hierarchy
+ps -e -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,comm --forest --sort=pid \
+    | tail -n +2 \
+    | awk '{printf "%-10s %-5s %-5s %-10s %-10s %-5s %-10s %-5s %-10s %-5s %-15s\n", \
+    $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11}'
