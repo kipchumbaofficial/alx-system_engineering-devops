@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Displays listening processes
+sudo netstat -lp
