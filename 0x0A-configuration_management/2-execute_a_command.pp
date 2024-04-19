@@ -1,4 +1,4 @@
-#! Kills a process
+# Kills a process
 
 exec {'kill-menow':
     command => 'pkill killmenow',
