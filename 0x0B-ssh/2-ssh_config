@@ -1,0 +1,4 @@
+# Config for my server
+Host 107.22.144.84
+    PasswordAuthentication no
+    IdentityFile ~/.ssh/school
