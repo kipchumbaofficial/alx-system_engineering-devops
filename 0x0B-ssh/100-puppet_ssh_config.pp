@@ -5,7 +5,7 @@ file_line { 'Turn off password auth':
     path   => '/etc/ssh/ssh_config',
     line   => '    PasswordAuthentication no',
 }
-
+# Setting Identityfile
 file_line { 'Declaring identity file':
     ensure => 'present',
     path   => '/etc/ssh/ssh_config',
