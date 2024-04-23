@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Install nginx
+apt-get install -y nginx
+
+# Configuring nginx
+
+current_config="/etc/nginx/sites-available/default"
+
+new_conf="
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/html;
+        index index.html index.html index.nginx.debian.html;
+
+        server_name _;
+
+        location / {
+                try_files \$uri \$uri/ =404;
+        }
+}"
+echo "$new_conf" > "$current_config"
+
+# Set up curl
+echo "Hello world!" > /var/www/html/index.html
+
+#Restarting nginx
+service nginx restart
