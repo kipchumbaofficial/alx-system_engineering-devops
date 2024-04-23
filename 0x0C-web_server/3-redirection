@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# Configures redirection in engine x
 # install nginx
 sudo apt-get update
 
