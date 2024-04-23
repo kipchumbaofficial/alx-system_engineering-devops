@@ -1,14 +1,7 @@
 #!/usr/bin/env bash
-
 # Install nginx
-apt-get update -y
+apt-get update
 apt-get install -y nginx
-
-#Firewall
 ufw allow 'Nginx HTTP'
-
-# Set up curl
 echo "Hello world!" > /var/www/html/index.html
-
-#Restarting nginx
 service nginx start
