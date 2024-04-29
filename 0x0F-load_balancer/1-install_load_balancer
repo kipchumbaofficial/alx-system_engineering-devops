@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
 # Install HA proxy and configure it
-
 sudo apt-get -y update
-sudo apt-get -y upgrade
 sudo apt-get -y install haproxy
-sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
-sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
-sudo sed -i "$ a\listen 1124-lb-01\n\tbind *:80\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption
-forwardfor\n\tserver 333082-web-02 104.196.45.174:80 check\n\tserver 333082-web-01 35.237.240.179:80 check" /etc/haproxy/haproxy.cfg
-sudo service haproxy start
+
+# Editing the HAProxy config file
+echo "
+frontend  dohoudaniel-frontend
+        bind *:80
+        mode http
+        default_backend dohoudaniel-backend
+backend dohoudaniel-backend
+        balance roundrobin
+        server 125427-web-01 18.210.18.189:80 check
+        server 125427-web-02 100.26.120.45:80 check
+" >> /etc/haproxy/haproxy.cfg
+
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
+# Restarting the HAProxy service
+sudo service haproxy restart
