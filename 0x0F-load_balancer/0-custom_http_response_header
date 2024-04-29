@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# Configures a new server
+
+# install nginx in the server
+sudo apt-get update
+
+sudo apt-get -y install nginx
+
+# Starting nginx
+service nginx start
+
+# Configuring nginx
+current_conf="/etc/nginx/sites-available/default"
+
+new_conf="
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/html;
+
+        index index.html indx.htm index.debian.html;
+
+        server_name _;
+
+        # Setting Header
+        location / {
+            add_header X-Served-By "333082-web-02";
+        }
+
+        # Permanent Redirection
+        location /redirect_me {
+            return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        }
+
+        # 404 Not found
+        error_page 404 =404 /404_not_found;
+        location = /404_not_found {
+            return 404 \"Ceci n'est pas une page\n\";
+        }
+}"
+
+echo "$new_conf" > "$current_conf"
+echo "Hello World!" > /var/www/html/index.html
+
+service nginx restart
