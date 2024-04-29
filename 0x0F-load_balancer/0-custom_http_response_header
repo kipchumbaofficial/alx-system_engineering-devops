@@ -11,7 +11,7 @@ service nginx start
 
 # Configuring nginx
 current_conf="/etc/nginx/sites-available/default"
-# shellcheck disable=2140
+# shellcheck disable=2140, SC2154
 new_conf="
 server {
         listen 80 default_server;
