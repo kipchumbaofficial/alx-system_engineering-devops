@@ -5,11 +5,11 @@ sudo apt-get -y install haproxy
 
 # Editing the HAProxy config file
 echo "
-frontend http_frontend
+frontend kipchumba_frontend
         bind *:80
         mode http
-        default_backend http_backend
-backend http_backend
+        default_backend kipchumba_backend
+backend kipchumba_backend
         balance roundrobin
         server 333082-web-01 107.22.144.84:80 check
         server 333082-web-02 52.86.231.250:80 check
