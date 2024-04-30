@@ -8,7 +8,7 @@ echo "
 frontend http_frontend
         bind *:80
         mode http
-        default_backend dohoudaniel-backend
+        default_backend http_backend
 backend http_backend
         balance roundrobin
         server 333082-web-01 107.22.144.84:80 check
