@@ -1,8 +1,3 @@
 #!/usr/bin/env bash
-# A script to cnfigure  apache to return a specific message
-
-# Set a specific message
-echo "Hello Holberton" > index.html
-
-# Configure apache to return the message when root is querried
-sudo docker run -d -p 8080:80 -v "$(pwd)":/usr/local/apache2/htdocs/ httpd
+# Debug a given container to return a message
+sudo service apache2 start
