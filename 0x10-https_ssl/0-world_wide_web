@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Print out the details of a domain
+# shellcheck disable=SC2086
+func_one () {
+    subdomains=("www" "lb-01" "web-01" "web-02")
+    for sub_domain in "${subdomains[@]}"
+    do
+	    record_type=$(dig "$sub_domain"."$1" | grep -A1 'ANSWER SECTION' | tail -1 | awk '{print $4}')
+        destination=$(dig "$sub_domain"."$1" | grep -A1 'ANSWER SECTION' | tail -1 | awk '{print $5}')
+	    echo "The subdomain $sub_domain is a $record_type record and points to $destination"
+    done
+}
+func_two () {
+    record_type=$(dig "$2"."$1" | grep -A1 'ANSWER SECTION' | tail -1 | awk '{print $4}')
+    destination=$(dig "$2"."$1" | grep -A1 'ANSWER SECTION' | tail -1 | awk '{print $5}')
+    echo "The subdomain $2 is a $record_type record and points to $destination"
+}
+if [ $# -eq 1 ];
+then
+    func_one "$1"
+elif [ $# -gt 1 ];
+then
+    func_two "$1" "$2"
+fi
+exit 0
