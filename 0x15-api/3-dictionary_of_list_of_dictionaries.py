@@ -10,7 +10,6 @@ if __name__ == "__main__":
     import json
     import requests
 
-
     usersUrl = "https://jsonplaceholder.typicode.com/users"
     response = requests.get(usersUrl)
     users = response.json()
