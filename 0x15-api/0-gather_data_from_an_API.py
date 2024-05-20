@@ -17,8 +17,9 @@ if __name__ == "__main__":
 
     total = len(tasks)
     completed = sum(1 for task in tasks if task['completed'])
-
-    print(f"Employee {info.get('name')} is done with tasks({completed}/{total})")
+    output = f"Employee {info.get('name')} is done"
+    output += f" with tasks({completed}/{total}):"
+    print(output)
     for task in tasks:
         if task['completed']:
             print(f"\t {task.get('title')}")
