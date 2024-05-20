@@ -21,5 +21,5 @@ if __name__ == "__main__":
     with open(csv_file, mode='w', newline='') as file_csv:
         writer = csv.writer(file_csv, quoting=csv.QUOTE_ALL)
         for task in tasks:
-            writer.writerow([task.get("userId"), info.get("name"),
+            writer.writerow([int(argv[1]), info.get("name"),
                             task.get("completed"), task.get("title")])
