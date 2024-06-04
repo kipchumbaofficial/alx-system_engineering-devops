@@ -20,6 +20,6 @@ def number_of_subscribers(subreddit):
 
     if response.status_code == 200:
         retval = response.json()
-        return retval['data']['subscribers']
+        return (retval.get('data').get('subscribers'))
     else:
         return 0
