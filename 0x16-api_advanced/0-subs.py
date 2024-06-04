@@ -3,6 +3,7 @@
 in a subreddit
 '''
 import requests
+import sys
 
 
 def number_of_subscribers(subreddit):
