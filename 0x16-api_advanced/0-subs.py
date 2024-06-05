@@ -2,24 +2,23 @@
 '''Fetches the number of subscribers
 in a subreddit
 '''
-import requests
-import sys
+
+from requests import get
 
 
 def number_of_subscribers(subreddit):
-    '''Returns the number of subscribers
-    or 0 if the subreddit is invalid'''
+    """"Returns:
+        The number of subscribers, or 0 if the subreddit is invalid.
+    """
+    if subreddit is None or not isinstance(subreddit, str):
+        return 0
 
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    user = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; '
-    user += 'rv:114.0) Gecko/20100101 Firefox/114.0'
-    headers = {
-            'User-Agent': user
-            }
-    response = requests.get(url, headers=headers, allow_redirects=False)
+    headers = {'User-Agent': 'Google Chrome Version 81.0.4044.129'}
+    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
+    response = get(url, headers=headers, allow_redirects=False)
+    results = response.json()
 
-    if response.status_code == 200:
-        retval = response.json()
-        return (retval.get('data').get('subscribers'))
-    else:
+    try:
+        return results.get('data').get('subscribers')
+    except Exception:
         return 0
