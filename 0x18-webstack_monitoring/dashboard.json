@@ -1,0 +1,90 @@
+{
+  "title": "Kips Dash",
+  "widgets": [
+    {
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "avg:system.cpu.user{*}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "title": "CPU Usage"
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 6,
+        "height": 6
+      }
+    },
+    {
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "avg:system.load.1{*}",
+            "aggregator": "avg"
+          }
+        ],
+        "title": "System Load (1 min)"
+      },
+      "layout": {
+        "x": 6,
+        "y": 0,
+        "width": 6,
+        "height": 6
+      }
+    },
+    {
+      "definition": {
+        "type": "toplist",
+        "requests": [
+          {
+            "q": "top(avg:system.cpu.user{*} by {host}, 10, 'mean', 'desc')",
+            "style": {
+              "palette": "dog_classic"
+            }
+          }
+        ],
+        "title": "Top CPU Usage by Host"
+      },
+      "layout": {
+        "x": 0,
+        "y": 6,
+        "width": 6,
+        "height": 6
+      }
+    },
+    {
+      "definition": {
+        "type": "heatmap",
+        "requests": [
+          {
+            "q": "avg:system.load.1{*} by {host}",
+            "style": {
+              "palette": "dog_classic"
+            }
+          }
+        ],
+        "title": "System Load Heatmap"
+      },
+      "layout": {
+        "x": 6,
+        "y": 6,
+        "width": 6,
+        "height": 6
+      }
+    }
+  ],
+  "layout_type": "ordered",
+  "description": "A dashboard with multiple widgets showing various system metrics.",
+  "is_read_only": false,
+  "notify_list": []
+}
